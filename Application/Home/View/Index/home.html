@@ -16,9 +16,6 @@
             });
             $("#Qu").click(function () {
                 $("#s1").show();
-            });
-            $("#chax").click(function () {
-                //$("#s1").show();
                 var ajax=new XMLHttpRequest();
                 ajax.open('GET','{:U("disp")}',true);
                 ajax.setRequestHeader("Content-Type","text/html;charset=utf-8");
@@ -31,7 +28,7 @@
                         for(var i=0 ;i<data.length;i++){
                             str = str+"<tr>"+
                                 "<td>设备ID：" + data[i]['uid']+"</td>"+
-                                "<td>GPS坐标：" +data[i]['ugps']+"</td>"+
+                                "<td>GPS坐标：" +"<a href='map?mp="+data[i]['ugps']+"'>"+data[i]['ugps']+"</a></td>"+
                                 "<td>设备信息：" +data[i]['uinfo']+"</td>"+
                                 "<td>信息等级："+data[i]['ulevel']+"</td></tr>";
                         }
@@ -40,29 +37,8 @@
                     }
                 }
             });
-            s1 ="<tr>"+
-            "<td>设备ID：11001</td>"+
-            "<td>GPS坐标：113.30764968,23.1200491</td>"+
-            "<td>设备信息：I am encounter dangerous</td>"+
-            "<td>信息等级：3</td></tr>";
-            s2 = "<tr>"+
-                "<td>设备ID：11001</td>"+
-                "<td>GPS坐标：113.30764968,23.1200491</td>"+
-                "<td>设备信息：I am fine</td>"+
-                "<td>信息等级：1</td></tr>";
-
-            function set() {
-                setTimeout(function () {
-                    $("#result").append(s1);
-                },2000);
-                setTimeout(function () {
-                    $("#result").append(s2);
-                },5000);
-            };
-            $("#Qu").click(function () {
-                set();
-            })
         });
+
     </script>
 </head>
 <body>
@@ -70,7 +46,7 @@
     <div class="col-md-12" style="background: #000000">
         <div class="col-md-10"></div>
         <div class="col-md-2">
-            <div class="row"><button id="chax" class="btn btn-primary">查询历史记录</button><button id="Qu" class="btn btn-primary" >连接服务器</button></div>
+            <div class="row"><a href="{:U('history')}"><button class="btn btn-primary">查询历史记录</button></a><button id="Qu" class="btn btn-primary" >连接服务器</button></div>
         </div>
     </div>
 </div>
@@ -82,24 +58,25 @@
                 <tr>
                     <td colspan="4">内容显示</td>
                 </tr>
-                <tbody id="result"></tbody>
+                    <tbody id="result"></tbody>
             </table>
         </div>
     </div>
 </div>
-<div class="demo" id="s1">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="loader">
-                    <div class="loading-1"></div>
-                    <div class="loading-2">已连接成功<br>正在加载数据</div>
-                    <div class="loading-3"><button id="cs" class="btn btn-primary" >断开</button></div>
+    <div class="demo" id="s1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="loader">
+                        <div class="loading-1"></div>
+                        <div class="loading-2">已连接成功<br>正在加载数据</div>
+                        <div class="loading-3"><button id="cs" class="btn btn-primary" >断开</button></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--<div><iframe src="map.html"></iframe></div>-->
+
 </body>
 </html>

@@ -2,7 +2,12 @@
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+    //登陆页面
     public function index(){
+       $this->display();
+    }
+    //管理页面
+    public function home(){
        $this->display();
     }
     //显示数据库里的数据
